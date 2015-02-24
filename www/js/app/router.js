@@ -21,19 +21,15 @@ define([
         },
 
         home: function () {
-            homeView.delegateEvents();
-            layout.setOptions({
+            this.loadPage(layout, homeView, {
                 title: 'Accueil',
             });
-            this.loadPage(homeView);
         },
 
         nextPage: function () {
-            nextPageView.delegateEvents();
-            layout.setOptions({
+            this.loadPage(layout, nextPageView, {
                 title: 'NextPage',
             });
-            this.loadPage(nextPageView);
         },
     });
 
