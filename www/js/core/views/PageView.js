@@ -12,7 +12,7 @@ define([
          * bound to the view.
          */
         initialize: function () {
-            AppView.prototype.initialize.apply(this);
+            AppView.prototype.initialize.apply(this, arguments);
             var that = this;
 
             // Add general layout options

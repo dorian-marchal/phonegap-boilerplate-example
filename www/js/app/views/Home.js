@@ -2,19 +2,23 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'core/views/AppView',
+    'core/views/PageView',
     'text!app/templates/Home.html',
     'text!app/templates/MyModel.html',
     'app/models/mymodels',
-], function ($, _, Backbone, AppView, template, myModelTemplate, MyModels) {
+], function ($, _, Backbone, PageView, template, myModelTemplate, MyModels) {
     'use strict';
 
-    return AppView.extend({
+    return PageView.extend({
 
         className: 'container',
 
+        layoutOptions: {
+            title: 'Home',
+        },
+
         initialize: function () {
-            AppView.prototype.initialize.apply(this);
+            PageView.prototype.initialize.apply(this, arguments);
             var that = this;
 
             that.template = _.template(template);

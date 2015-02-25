@@ -2,17 +2,21 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'core/views/AppView',
+    'core/views/PageView',
     'text!app/templates/NextPage.html',
-],function ($, _, Backbone, AppView, template) {
+],function ($, _, Backbone, PageView, template) {
     'use strict';
 
-    return AppView.extend({
+    return PageView.extend({
 
         className: 'container',
 
+        layoutOptions: {
+            title: 'Home',
+        },
+
         initialize: function () {
-            AppView.prototype.initialize.apply(this);
+            PageView.prototype.initialize.apply(this, arguments);
             this.template = _.template(template);
         },
 

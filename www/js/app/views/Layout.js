@@ -15,7 +15,7 @@ define([
     return AppView.extend({
 
         initialize: function () {
-            AppView.prototype.initialize.apply(this);
+            AppView.prototype.initialize.apply(this, arguments);
             this.template = _.template(template);
 
             this.options = {
@@ -34,11 +34,12 @@ define([
         render: function() {
             $('title').html(this.options.title);
             this.$el = $(this.template());
-            this.$el.find('.header').html(header.render({
+            this.assign(header, '.header', {
                 title: this.options.title,
-            }).el);
-            this.$el.find('.content').html(this.contentView.render().el);
-            this.$el.find('.footer').html(footer.render().el);
+            });
+            this.$el.find('.content').html(this.contentView.render().$el);
+            // this.assign(this.contentView, '.content');
+            this.assign(footer, '.footer');
             return this;
         },
 

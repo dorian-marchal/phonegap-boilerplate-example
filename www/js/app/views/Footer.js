@@ -9,8 +9,10 @@ define([
 
     return AppView.extend({
 
+        className: 'footer',
+
         initialize: function () {
-            AppView.prototype.initialize.apply(this);
+            AppView.prototype.initialize.apply(this, arguments);
             this.template = _.template(template);
         },
 

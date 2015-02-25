@@ -10,8 +10,13 @@ define([
 
     var layout = new LayoutView();
 
-    var homeView = new HomeView();
-    var nextPageView = new NextPageView();
+    var homeView = new HomeView({
+        layout: layout
+    });
+
+    var nextPageView = new NextPageView({
+        layout: layout
+    });
 
     return Backbone.Router.extend({
 
@@ -21,15 +26,11 @@ define([
         },
 
         home: function () {
-            this.loadPage(layout, homeView, {
-                title: 'Accueil',
-            });
+            this.loadPage(homeView);
         },
 
         nextPage: function () {
-            this.loadPage(layout, nextPageView, {
-                title: 'NextPage',
-            });
+            this.loadPage(nextPageView);
         },
     });
 

@@ -21,6 +21,7 @@
         },
 
         initialize: function () {
+            Backbone.View.prototype.initialize.apply(this);
             var that = this;
 
             that.events = that.events || {};
