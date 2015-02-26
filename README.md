@@ -1,2 +1,2 @@
 # phonegap-boilerplate
-Un socle de base pour développer une appli PhoneGap (Backbone / Topcoat)
+A simple example to show how to use https://github.com/dorian-marchal/phonegap-boilerplate 
