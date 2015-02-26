@@ -8,17 +8,12 @@ define([
 ], function ($, Backbone, AppRouter, LayoutView, HomeView, NextPageView) {
     'use strict';
 
-    var layout = new LayoutView();
-
-    var homeView = new HomeView({
-        layout: layout
-    });
-
-    var nextPageView = new NextPageView({
-        layout: layout
-    });
 
     return AppRouter.extend({
+
+        layout: new LayoutView(),
+        homeView: new HomeView(),
+        nextPageView: new NextPageView(),
 
         routes: {
             '': 'home',
@@ -26,11 +21,11 @@ define([
         },
 
         home: function () {
-            this.loadPage(homeView);
+            this.loadPage(this.layout, this.homeView);
         },
 
         nextPage: function () {
-            this.loadPage(nextPageView);
+            this.loadPage(this.layout, this.nextPageView);
         },
     });
 
