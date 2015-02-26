@@ -18,7 +18,7 @@ define([
         layout: layout
     });
 
-    return Backbone.Router.extend({
+    return AppRouter.extend({
 
         routes: {
             '': 'home',
