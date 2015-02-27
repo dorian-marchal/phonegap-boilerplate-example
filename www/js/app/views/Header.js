@@ -4,12 +4,12 @@ define([
     'backbone',
     'core/views/AppView',
     'text!app/templates/Header.html',
-], function ($, _, Backbone, AppView, template) {
+], function (module, $, _, Backbone, AppView, template) {
     'use strict';
 
     return AppView.extend({
 
-        title: 'Phonegap Boilerplate',
+        title: module.config().appName,
 
         initialize: function () {
             AppView.prototype.initialize.apply(this, arguments);
