@@ -1,4 +1,5 @@
 define([
+    'module',
     'jquery',
     'underscore',
     'backbone',
@@ -6,7 +7,7 @@ define([
     'text!app/templates/Layout.html',
     'app/views/Header',
     'app/views/Footer',
-], function ($, _, Backbone, AppView, template, HeaderView, FooterView) {
+], function (module, $, _, Backbone, AppView, template, HeaderView, FooterView) {
     'use strict';
 
     var header = new HeaderView();
@@ -19,7 +20,7 @@ define([
             this.template = _.template(template);
 
             this.options = {
-                title: 'Backbone Boilerplate',
+                title: module.config().appName,
             };
         },
 
