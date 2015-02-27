@@ -12,7 +12,7 @@ define([
         className: 'container',
 
         layoutOptions: {
-            title: 'Home',
+            title: 'NextPage',
         },
 
         initialize: function () {
