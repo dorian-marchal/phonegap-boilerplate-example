@@ -9,13 +9,17 @@ define([
 
     return AppView.extend({
 
+        title: 'Phonegap Boilerplate',
+
         initialize: function () {
             AppView.prototype.initialize.apply(this, arguments);
             this.template = _.template(template);
         },
 
-        render: function (options) {
-            this.$el.html($(this.template(options)));
+        render: function () {
+            this.$el.html($(this.template({
+                title: this.title,
+            })));
             return this;
         },
 

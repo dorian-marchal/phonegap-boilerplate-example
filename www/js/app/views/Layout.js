@@ -34,11 +34,12 @@ define([
         render: function() {
             $('title').html(this.options.title);
             this.$el = $(this.template());
-            this.assign(header, '.header', {
-                title: this.options.title,
-            });
+
+            header.title = this.options.title;
+            this.assign(header, '.header');
+
             this.$el.find('.content').html(this.contentView.render().$el);
-            // this.assign(this.contentView, '.content');
+
             this.assign(footer, '.footer');
             return this;
         },
