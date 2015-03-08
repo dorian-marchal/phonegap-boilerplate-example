@@ -5,8 +5,8 @@ define([
     'core/views/PageView',
     'text!app/templates/Home.html',
     'text!app/templates/MyModel.html',
-    'app/models/mymodels',
-], function ($, _, Backbone, PageView, template, myModelTemplate, MyModels) {
+    'app/models/MyModelCollection',
+], function ($, _, Backbone, PageView, template, myModelTemplate, MyModelCollection) {
     'use strict';
 
     return PageView.extend({
@@ -23,7 +23,7 @@ define([
 
             that.template = _.template(template);
             that.myModelsTemplate = _.template(myModelTemplate);
-            that.myModels = new MyModels();
+            that.myModels = new MyModelCollection();
 
             that.myModels.on('invalid', function(model, error) {
                 alert(error);
