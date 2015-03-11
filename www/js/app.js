@@ -5,6 +5,12 @@ require(['config'], function(config) {
 
     require(['jquery', 'backbone', 'app/router'], function ($, Backbone, Router) {
 
+        $.ajaxSetup({
+            xhrFields: {
+                withCredentials: true,
+            }
+        });
+
         var router = new Router();
         Backbone.history.start();
     });

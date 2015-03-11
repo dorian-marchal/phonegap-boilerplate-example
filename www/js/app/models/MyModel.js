@@ -1,12 +1,11 @@
 define([
-    'underscore',
-    'backbone',
+    'core/models/AppModel',
     'jquery',
-], function(_, Backbone, $) {
+], function(AppModel, $) {
     'use strict';
 
-    var MyModel = Backbone.Model.extend({
-        url: 'http://localhost:8080/mymodels',
+    var MyModel = AppModel.extend({
+        route: '/mymodels',
 
         validate: function(attributes) {
 
