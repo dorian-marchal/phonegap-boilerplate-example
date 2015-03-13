@@ -40,3 +40,9 @@ header {
 .topcoat-navigation-bar .topcoat-button {
     margin-top: 9px;
 }
+
+[data-route="login"] {
+    position: absolute;
+    left: 10px;
+}
+
