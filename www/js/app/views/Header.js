@@ -20,6 +20,7 @@ define([
         render: function () {
             this.$el.html($(this.template({
                 title: this.title,
+                loggedIn: true,
             })));
             return this;
         },
