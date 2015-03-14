@@ -5,12 +5,6 @@ require(['config'], function(config) {
 
     require(['domReady!', 'jquery', 'backbone', 'fastclick', 'app/router'], function (domReady, $, Backbone, FastClick, Router) {
 
-        $.ajaxSetup({
-            xhrFields: {
-                withCredentials: true,
-            }
-        });
-
         FastClick.attach(document.body);
 
         $.ajaxSetup({
