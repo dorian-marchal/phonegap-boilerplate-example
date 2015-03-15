@@ -42,7 +42,6 @@ header {
 }
 
 [data-route="login"] {
-    position: absolute;
-    left: 10px;
+    float: left;
 }
 
