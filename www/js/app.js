@@ -13,6 +13,8 @@ require(['config'], function(config) {
             }
         });
 
+        var loggedIn = false;
+
         var router = new Router();
         Backbone.history.start();
     });
