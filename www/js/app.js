@@ -3,7 +3,14 @@ require(['config'], function(config) {
 
     require.config(config);
 
-    require(['domReady!', 'jquery', 'backbone', 'fastclick', 'app/router'], function (domReady, $, Backbone, FastClick, Router) {
+    require([
+        'domReady!',
+        'jquery',
+        'backbone',
+        'fastclick',
+        'app/router',
+        'core/utils/State'
+    ], function (domReady, $, Backbone, FastClick, Router, state) {
 
         FastClick.attach(document.body);
 
@@ -13,7 +20,9 @@ require(['config'], function(config) {
             }
         });
 
-        var loggedIn = false;
+        state.checkLogin(function(loggedIn) {
+            console.log(loggedIn);
+        });
 
         var router = new Router();
         Backbone.history.start();

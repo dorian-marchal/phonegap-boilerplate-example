@@ -31,10 +31,13 @@ define([
             event.preventDefault();
 
             api.post('/login', {
-                username: $('[name="username"]').val(),
-                password: $('[name="password"]').val(),
-            }, function(data) {
-                console.log(data);
+                data: {
+                    username: $('[name="username"]').val(),
+                    password: $('[name="password"]').val(),
+                },
+                success: function(data) {
+                    console.log(data);
+                },
             });
 
         },
