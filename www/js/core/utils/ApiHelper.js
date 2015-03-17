@@ -18,7 +18,7 @@ define([
 
             settings.method = method;
             settings.url = 'http://' + serverHost + ':' + serverPort + url;
-            return $.ajax.apply(this, settings);
+            return $.ajax(settings);
         };
 
         this.get = function(url, settings) {
