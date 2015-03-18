@@ -2,10 +2,11 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'core/utils/State',
     'core/views/PageView',
     'text!app/templates/Login.html',
     'core/utils/ApiHelper',
-], function ($, _, Backbone, PageView, template, api) {
+], function ($, _, Backbone, state, PageView, template, api) {
     'use strict';
 
     return PageView.extend({
@@ -36,7 +37,11 @@ define([
                     password: $('[name="password"]').val(),
                 },
                 success: function(data) {
-                    console.log(data);
+                    state.loggedIn = true;
+                    location.hash = '';
+                },
+                error: function() {
+                    console.log('Wrong creds');
                 },
             });
 
