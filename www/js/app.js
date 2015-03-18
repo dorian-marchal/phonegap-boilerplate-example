@@ -21,10 +21,8 @@ require(['config'], function(config) {
         });
 
         state.checkLogin(function(loggedIn) {
-            console.log(loggedIn);
+            var router = new Router();
+            Backbone.history.start();
         });
-
-        var router = new Router();
-        Backbone.history.start();
     });
 });
