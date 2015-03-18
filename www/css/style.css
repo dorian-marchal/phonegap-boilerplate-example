@@ -41,7 +41,8 @@ header {
     margin-top: 9px;
 }
 
-[data-route="login"] {
-    float: left;
+.topcoat-navigation-bar .left-button {
+    position: absolute;
+    left: 0px;
 }
 
