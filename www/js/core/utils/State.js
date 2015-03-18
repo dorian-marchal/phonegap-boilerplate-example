@@ -9,6 +9,7 @@ define([
 
     var State = function () {
 
+        var that = this;
         this.loggedIn = false;
 
         this.checkLogin = function(callback) {
@@ -16,12 +17,12 @@ define([
 
             api.get('/logged-in', {
                 success: function() {
-                    this.loggedIn = true;
+                    that.loggedIn = true;
                     console.log('success');
                     callback(true);
                 },
                 error: function() {
-                    this.loggedIn = false;
+                    that.loggedIn = false;
                     console.log('error');
                     callback(false);
                 },
