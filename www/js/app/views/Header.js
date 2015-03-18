@@ -3,14 +3,20 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'core/utils/State',
     'core/views/AppView',
     'text!app/templates/Header.html',
-], function (config, $, _, Backbone, AppView, template) {
+    'core/utils/ApiHelper',
+], function (config, $, _, Backbone, state, AppView, template, api) {
     'use strict';
 
     return AppView.extend({
 
         title: config.appName,
+
+        events : {
+            'click [data-action="logout"]' : 'logout',
+        },
 
         initialize: function () {
             AppView.prototype.initialize.apply(this, arguments);
@@ -20,9 +26,18 @@ define([
         render: function () {
             this.$el.html($(this.template({
                 title: this.title,
-                loggedIn: true,
+                loggedIn: state.loggedIn,
             })));
             return this;
+        },
+
+        logout: function() {
+            api.post('/logout', {
+                success: function() {
+                    state.loggedIn = false;
+                    location.hash = '';
+                }
+            });
         },
 
     });
