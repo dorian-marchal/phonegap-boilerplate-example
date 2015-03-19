@@ -3,7 +3,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'core/utils/State',
+    'app/state',
     'core/views/AppView',
     'text!app/templates/Header.html',
     'core/utils/ApiHelper',
@@ -27,6 +27,7 @@ define([
             this.$el.html($(this.template({
                 title: this.title,
                 loggedIn: state.loggedIn,
+                showAuthButton: true,
             })));
             return this;
         },
