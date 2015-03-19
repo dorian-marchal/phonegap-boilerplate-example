@@ -7,7 +7,7 @@ define([
 
     'use strict';
 
-    var State = function () {
+    var AppState = function () {
 
         var that = this;
         this.loggedIn = false;
@@ -30,5 +30,5 @@ define([
         };
     };
 
-    return new State();
+    return new AppState();
 });

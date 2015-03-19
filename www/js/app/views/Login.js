@@ -2,7 +2,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'core/utils/State',
+    'app/state',
     'core/views/PageView',
     'text!app/templates/Login.html',
     'core/utils/ApiHelper',

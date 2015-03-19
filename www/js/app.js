@@ -9,7 +9,7 @@ require(['config'], function(config) {
         'backbone',
         'fastclick',
         'app/router',
-        'core/utils/State'
+        'app/state'
     ], function (domReady, $, Backbone, FastClick, Router, state) {
 
         FastClick.attach(document.body);
