@@ -21,7 +21,6 @@ require(['config'], function(config) {
         });
 
         state.checkLogin(function(loggedIn) {
-            var router = new Router();
             Backbone.history.start();
         });
     });

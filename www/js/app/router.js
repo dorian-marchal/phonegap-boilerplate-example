@@ -9,7 +9,7 @@ define([
 ], function ($, Backbone, AppRouter, LayoutView, LoginView, HomeView, NextPageView) {
     'use strict';
 
-    return AppRouter.extend({
+    var Router = AppRouter.extend({
 
         layout: new LayoutView(),
         loginView: new LoginView(),
@@ -34,5 +34,7 @@ define([
             this.loadPage(this.layout, this.nextPageView);
         },
     });
+
+    return new Router();
 
 });
