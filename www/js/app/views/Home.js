@@ -26,7 +26,7 @@ define([
             that.myModels = new MyModelCollection();
 
             that.myModels.on('invalid', function(model, error) {
-                alert(error);
+                console.log(error);
             });
             that.myModels.on('change', that.renderMyModels, that);
         },
@@ -46,7 +46,7 @@ define([
                 wait: true,
                 validate: true,
                 error: function(model, res, error) {
-                    alert('Les données n\'ont pas pu être enregistrées. Le serveur REST est lancé ?');
+                    console.log('Les données n\'ont pas pu être enregistrées. Le serveur REST est lancé ?');
                     console.log(model, res, error);
                 }
             });
@@ -72,7 +72,7 @@ define([
                     that.renderMyModels();
                 },
                 error: function(model, res, error) {
-                    alert('Les données n\'ont pas pu être récupérées. Le serveur REST est lancé ?');
+                    console.log('Les données n\'ont pas pu être récupérées. Le serveur REST est lancé ?');
                 }
             });
             that.$el.html(that.template());

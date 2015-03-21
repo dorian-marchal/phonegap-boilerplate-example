@@ -2,10 +2,11 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'app/state',
     'core/views/PageView',
     'text!app/templates/Login.html',
     'core/utils/ApiHelper',
-], function ($, _, Backbone, PageView, template, api) {
+], function ($, _, Backbone, state, PageView, template, api) {
     'use strict';
 
     return PageView.extend({
@@ -31,10 +32,17 @@ define([
             event.preventDefault();
 
             api.post('/login', {
-                username: $('[name="username"]').val(),
-                password: $('[name="password"]').val(),
-            }, function(data) {
-                console.log(data);
+                data: {
+                    username: $('[name="username"]').val(),
+                    password: $('[name="password"]').val(),
+                },
+                success: function(data) {
+                    state.loggedIn = true;
+                    location.hash = '';
+                },
+                error: function() {
+                    console.log('Wrong creds');
+                },
             });
 
         },

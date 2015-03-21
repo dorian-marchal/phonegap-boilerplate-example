@@ -36,3 +36,13 @@ header {
 .mymodel-list {
     margin-top: 60px;
 }
+
+.topcoat-navigation-bar .topcoat-button {
+    margin-top: 9px;
+}
+
+.topcoat-navigation-bar .left-button {
+    position: absolute;
+    left: 0px;
+}
+

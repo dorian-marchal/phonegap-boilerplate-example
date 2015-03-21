@@ -1,5 +1,12 @@
 <div class="topcoat-navigation-bar">
     <div class="topcoat-navigation-bar__item center full">
+        <% if (showAuthButton) { %>
+    	   <% if (!loggedIn) { %>
+                <button class="topcoat-button left-button" data-route="login" >Login</button>
+            <% } else { %>
+            	<button class="topcoat-button left-button" data-action="logout" >Logout</button>
+            <% } %>
+        <% } %>
         <h1 class="topcoat-navigation-bar__title"><%= title %></h1>
     </div>
 </div>
