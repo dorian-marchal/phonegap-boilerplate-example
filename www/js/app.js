@@ -9,8 +9,9 @@ require(['config'], function(config) {
         'backbone',
         'fastclick',
         'app/router',
+        'app/Controller',
         'app/state'
-    ], function (domReady, $, Backbone, FastClick, Router, state) {
+    ], function (domReady, $, Backbone, FastClick, router, Controller, state) {
 
         FastClick.attach(document.body);
 
@@ -21,6 +22,8 @@ require(['config'], function(config) {
         });
 
         state.checkLogin(function(loggedIn) {
+
+            router.setController(new Controller());
             Backbone.history.start();
         });
     });

@@ -4,10 +4,11 @@ define([
     'underscore',
     'backbone',
     'app/state',
+    'app/router',
     'core/views/AppView',
     'text!app/templates/Header.html',
     'core/utils/ApiHelper',
-], function (config, $, _, Backbone, state, AppView, template, api) {
+], function (config, $, _, Backbone, state, router, AppView, template, api) {
     'use strict';
 
     return AppView.extend({
@@ -36,7 +37,7 @@ define([
             api.post('/logout', {
                 success: function() {
                     state.loggedIn = false;
-                    location.hash = '';
+                    router.navigate('/', true);
                 }
             });
         },

@@ -1,20 +1,13 @@
 define([
-    'jquery',
-    'backbone',
     'core/AppRouter',
-    'app/views/Layout',
-    'app/views/Login',
-    'app/views/Home',
-    'app/views/NextPage',
-], function ($, Backbone, AppRouter, LayoutView, LoginView, HomeView, NextPageView) {
+], function (AppRouter) {
     'use strict';
 
     var Router = AppRouter.extend({
 
-        layout: new LayoutView(),
-        loginView: new LoginView(),
-        homeView: new HomeView(),
-        nextPageView: new NextPageView(),
+        setController: function(controller) {
+            this.controller = controller;
+        },
 
         routes: {
             '': 'home',
@@ -23,15 +16,15 @@ define([
         },
 
         home: function () {
-            this.loadPage(this.layout, this.homeView);
+            this.controller.home();
         },
 
         login: function () {
-            this.loadPage(this.layout, this.loginView);
+            this.controller.login();
         },
 
         nextPage: function () {
-            this.loadPage(this.layout, this.nextPageView);
+            this.controller.nextPage();
         },
     });
 
