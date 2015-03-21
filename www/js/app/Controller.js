@@ -19,15 +19,15 @@ define([
 
     Controller.prototype.home = function () {
         this.loadPage(this.layout, this.homeView);
-    },
+    };
 
     Controller.prototype.login = function () {
         this.loadPage(this.layout, this.loginView);
-    },
+    };
 
     Controller.prototype.nextPage = function () {
         this.loadPage(this.layout, this.nextPageView);
-    },
+    };
 
     return Controller;
 
