@@ -3,10 +3,11 @@ define([
     'underscore',
     'backbone',
     'app/state',
+    'app/router',
     'core/views/PageView',
     'text!app/templates/Login.html',
     'core/utils/ApiHelper',
-], function ($, _, Backbone, state, PageView, template, api) {
+], function ($, _, Backbone, state, router, PageView, template, api) {
     'use strict';
 
     return PageView.extend({
@@ -36,9 +37,9 @@ define([
                     username: $('[name="username"]').val(),
                     password: $('[name="password"]').val(),
                 },
-                success: function(data) {
+                success: function() {
                     state.loggedIn = true;
-                    location.hash = '';
+                    router.navigate('/', true);
                 },
                 error: function() {
                     console.log('Wrong creds');

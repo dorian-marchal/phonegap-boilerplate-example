@@ -4,7 +4,8 @@
  */
 define([
     'jquery',
-], function ($) {
+    'app/router',
+], function ($, router) {
 
     'use strict';
 
@@ -14,7 +15,7 @@ define([
             stateHistory = [];
 
         this.back = function () {
-            location.hash = stateHistory[stateHistory.length - 2];
+            router.navigate(stateHistory[stateHistory.length - 2], true);
         };
 
         // Use this function if you want PageSlider to automatically determine the sliding direction based on the state history
