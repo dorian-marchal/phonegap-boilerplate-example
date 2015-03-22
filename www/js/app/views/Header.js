@@ -28,7 +28,7 @@ define([
             this.$el.html($(this.template({
                 title: this.title,
                 loggedIn: state.loggedIn,
-                showAuthButton: true,
+                showAuthButton: state.loggedIn || Backbone.history.fragment !== 'login',
             })));
             return this;
         },
