@@ -21,7 +21,11 @@ require(['config'], function(config) {
             }
         });
 
-        state.checkLogin(function(loggedIn) {
+        if (config.debug.useWeinre) {
+            $('head').append('<script src="http://' + config.debug.weinreHost + ':' + config.debug.weinrePort + '/target/target-script-min.js#anonymous"></script>');
+        }
+
+        state.checkLogin(function() {
 
             router.setController(new Controller());
             Backbone.history.start();
