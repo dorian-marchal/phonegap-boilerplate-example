@@ -7,7 +7,8 @@
     'jquery',
     'underscore',
     'backbone',
-], function ($, _, Backbone) {
+    'app/router'
+], function ($, _, Backbone, router) {
     'use strict';
 
     return Backbone.View.extend({
@@ -31,7 +32,7 @@
                     history.back();
                 },
                 'click [data-route]' : function(event) {
-                    location.hash = $(event.target).attr('data-route');
+                    router.navigate($(event.target).attr('data-route'), true);
                 }
             });
 

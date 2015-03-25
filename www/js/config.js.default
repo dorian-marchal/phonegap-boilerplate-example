@@ -32,4 +32,10 @@ define({
         host: 'localhost',
         port: 8080,
     },
+
+    debug: {
+        useWeinre: false,
+        weinreHost: 'localhost',
+        weinrePort: 8181,
+    },
 });
