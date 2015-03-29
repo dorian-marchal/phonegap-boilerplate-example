@@ -15,12 +15,6 @@ require(['config'], function(config) {
 
         FastClick.attach(document.body);
 
-        $.ajaxSetup({
-            xhrFields: {
-                withCredentials: true,
-            }
-        });
-
         if (config.debug.useWeinre) {
             $('head').append('<script src="http://' + config.debug.weinreHost + ':' + config.debug.weinrePort + '/target/target-script-min.js#anonymous"></script>');
         }
