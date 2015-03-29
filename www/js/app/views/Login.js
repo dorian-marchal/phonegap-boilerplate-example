@@ -3,7 +3,7 @@ define([
     'underscore',
     'backbone',
     'app/singletons/auth',
-    'app/router',
+    'app/singletons/router',
     'core/views/PageView',
     'text!app/templates/Login.html',
 ], function ($, _, Backbone, auth, router, PageView, template) {
