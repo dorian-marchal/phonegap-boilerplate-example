@@ -2,12 +2,11 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'app/auth',
+    'app/singletons/auth',
     'app/router',
     'core/views/PageView',
     'text!app/templates/Login.html',
-    'core/utils/ApiHelper',
-], function ($, _, Backbone, auth, router, PageView, template, api) {
+], function ($, _, Backbone, auth, router, PageView, template) {
     'use strict';
 
     return PageView.extend({

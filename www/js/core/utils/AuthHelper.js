@@ -1,13 +1,13 @@
 /**
  * Singleton used to manage the user authentification.
+ * @param {ApiHelper} api
  */
 define([
-    'core/utils/ApiHelper',
-], function (api) {
+], function () {
 
     'use strict';
 
-    var AppAuth = function () {
+    var AuthHelper = function (api) {
 
         var that = this;
         this.loggedIn = false;
@@ -98,5 +98,5 @@ define([
         this.setToken(localStorage.token);
     };
 
-    return new AppAuth();
+    return AuthHelper;
 });

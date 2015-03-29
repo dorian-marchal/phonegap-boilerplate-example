@@ -10,7 +10,7 @@ require(['config'], function(config) {
         'fastclick',
         'app/router',
         'app/Controller',
-        'app/auth'
+        'app/singletons/auth'
     ], function (domReady, $, Backbone, FastClick, router, Controller, auth) {
 
         FastClick.attach(document.body);

@@ -3,12 +3,11 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'app/auth',
+    'app/singletons/auth',
     'app/router',
     'core/views/AppView',
     'text!app/templates/Header.html',
-    'core/utils/ApiHelper',
-], function (config, $, _, Backbone, auth, router, AppView, template, api) {
+], function (config, $, _, Backbone, auth, router, AppView, template) {
     'use strict';
 
     return AppView.extend({
