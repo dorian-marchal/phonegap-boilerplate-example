@@ -2,12 +2,12 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'app/state',
+    'app/auth',
     'app/router',
     'core/views/PageView',
     'text!app/templates/Login.html',
     'core/utils/ApiHelper',
-], function ($, _, Backbone, state, router, PageView, template, api) {
+], function ($, _, Backbone, auth, router, PageView, template, api) {
     'use strict';
 
     return PageView.extend({
@@ -32,19 +32,18 @@ define([
         login: function(event) {
             event.preventDefault();
 
-            api.post('/login', {
-                data: {
-                    username: $('[name="username"]').val(),
-                    password: $('[name="password"]').val(),
-                },
-                success: function() {
-                    state.loggedIn = true;
-                    router.navigate('/', true);
-                },
-                error: function() {
-                    console.log('Wrong creds');
-                },
-            });
+            auth.login(
+                $('[name="username"]').val(),
+                $('[name="password"]').val(),
+                function(loginSuccess) {
+                    if (loginSuccess) {
+                        router.navigate('/', true);
+                    }
+                    else {
+                        console.log('Wrong creds');
+                    }
+                }
+            );
 
         },
 
