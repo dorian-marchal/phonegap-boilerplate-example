@@ -4,7 +4,7 @@
  */
 define([
     'jquery',
-    'app/router',
+    'app/singletons/router',
 ], function ($, router) {
 
     'use strict';

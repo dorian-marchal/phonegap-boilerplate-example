@@ -3,11 +3,12 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    '__',
     'core/views/AppView',
     'text!app/templates/Layout.html',
     'app/views/Header',
     'app/views/Footer',
-], function (config, $, _, Backbone, AppView, template, HeaderView, FooterView) {
+], function (config, $, _, Backbone, __, AppView, template, HeaderView, FooterView) {
     'use strict';
 
     var header = new HeaderView();
@@ -34,7 +35,9 @@ define([
 
         render: function() {
             $('title').html(this.options.title);
-            this.$el = $(this.template());
+            this.$el = $(this.template({
+                __: __,
+            }));
 
             header.title = this.options.title;
             this.assign(header, '.header');

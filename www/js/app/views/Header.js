@@ -3,12 +3,12 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'app/state',
-    'app/router',
+    '__',
+    'app/singletons/auth',
+    'app/singletons/router',
     'core/views/AppView',
     'text!app/templates/Header.html',
-    'core/utils/ApiHelper',
-], function (config, $, _, Backbone, state, router, AppView, template, api) {
+], function (config, $, _, Backbone, __, auth, router, AppView, template) {
     'use strict';
 
     return AppView.extend({
@@ -26,19 +26,17 @@ define([
 
         render: function () {
             this.$el.html($(this.template({
+                __: __,
                 title: this.title,
-                loggedIn: state.loggedIn,
-                showAuthButton: state.loggedIn || Backbone.history.fragment !== 'login',
+                loggedIn: auth.loggedIn,
+                showAuthButton: auth.loggedIn || Backbone.history.fragment !== 'login',
             })));
             return this;
         },
 
         logout: function() {
-            api.post('/logout', {
-                success: function() {
-                    state.loggedIn = false;
-                    router.navigate('/', true);
-                }
+            auth.logout(function() {
+                router.navigate('/', true);
             });
         },
 

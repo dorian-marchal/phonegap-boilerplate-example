@@ -1,0 +1,9 @@
+{
+  "Login": {
+    "Button": "Login",
+    "Page": "Login"
+  },
+  "Logout": {
+    "Button": "Logout"
+  }
+}

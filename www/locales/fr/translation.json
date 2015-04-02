@@ -1,0 +1,19 @@
+{
+  " : ": ": ",
+  "Attribute 2 :": "Attribut 2:",
+  "Attribute :": "Attribut:",
+  "Home": "Accueil",
+  "Login": {
+    "Button": "Se connecter",
+    "Page": "Connexion"
+  },
+  "Logout": {
+    "Button": "Se déconnecter"
+  },
+  "Models :": "Modèles",
+  "Next Page": "Page suivante",
+  "NextPage": "PageSuivante",
+  "Password :": "Mot de passe:",
+  "This is the next page :]": "Ceci est la page suivante :]",
+  "Username :": "Pseudo:"
+}

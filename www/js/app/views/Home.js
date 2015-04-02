@@ -2,11 +2,12 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    '__',
     'core/views/PageView',
     'text!app/templates/Home.html',
     'text!app/templates/MyModel.html',
     'app/models/MyModelCollection',
-], function ($, _, Backbone, PageView, template, myModelTemplate, MyModelCollection) {
+], function ($, _, Backbone, __, PageView, template, myModelTemplate, MyModelCollection) {
     'use strict';
 
     return PageView.extend({
@@ -14,7 +15,7 @@ define([
         className: 'container',
 
         layoutOptions: {
-            title: 'Home',
+            title: __.t('Home'),
         },
 
         initialize: function () {
@@ -28,7 +29,7 @@ define([
             that.myModels.on('invalid', function(model, error) {
                 console.log(error);
             });
-            that.myModels.on('change', that.renderMyModels, that);
+            that.myModels.on('add', that.renderMyModels, that);
         },
 
         events: {
@@ -60,7 +61,7 @@ define([
             $myModelList.empty();
 
             that.myModels.each(function(myModel) {
-                $myModelList.append(that.myModelsTemplate(myModel.toJSON()));
+                $myModelList.append(that.myModelsTemplate(_.extend(myModel.toJSON(), {__: __})));
             });
         },
 
@@ -68,14 +69,17 @@ define([
             var that = this;
 
             that.myModels.fetch({
+                silent: true,
                 success: function(model, res, error) {
                     that.renderMyModels();
                 },
                 error: function(model, res, error) {
                     console.log('Les données n\'ont pas pu être récupérées. Le serveur REST est lancé ?');
-                }
+                },
             });
-            that.$el.html(that.template());
+            that.$el.html(that.template({
+                __: __,
+            }));
             return that;
         },
 

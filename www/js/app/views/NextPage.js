@@ -2,9 +2,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    '__',
     'core/views/PageView',
     'text!app/templates/NextPage.html',
-],function ($, _, Backbone, PageView, template) {
+],function ($, _, Backbone, __, PageView, template) {
     'use strict';
 
     return PageView.extend({
@@ -12,7 +13,7 @@ define([
         className: 'container',
 
         layoutOptions: {
-            title: 'NextPage',
+            title: __.t('NextPage')
         },
 
         initialize: function () {
@@ -21,7 +22,9 @@ define([
         },
 
         render: function () {
-            this.$el.html(this.template());
+            this.$el.html(this.template({
+                __: __,
+            }));
             return this;
         },
 

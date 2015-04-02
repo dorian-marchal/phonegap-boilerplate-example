@@ -5,10 +5,6 @@ define([
 
     var Router = AppRouter.extend({
 
-        setController: function(controller) {
-            this.controller = controller;
-        },
-
         routes: {
             '': 'home',
             'nextPage': 'nextPage',
