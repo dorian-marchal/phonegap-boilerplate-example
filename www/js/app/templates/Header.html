@@ -2,9 +2,9 @@
     <div class="topcoat-navigation-bar__item center full">
         <% if (showAuthButton) { %>
     	   <% if (!loggedIn) { %>
-                <button class="topcoat-button left-button" data-route="login" >Login</button>
+                <button class="topcoat-button left-button" data-route="login" ><%= __.t('Login::Button') %></button>
             <% } else { %>
-            	<button class="topcoat-button left-button" data-action="logout" >Logout</button>
+            	<button class="topcoat-button left-button" data-action="logout" ><%= __.t('Logout::Button') %></button>
             <% } %>
         <% } %>
         <h1 class="topcoat-navigation-bar__title"><%= title %></h1>

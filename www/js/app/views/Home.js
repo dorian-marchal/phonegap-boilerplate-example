@@ -2,11 +2,12 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    '__',
     'core/views/PageView',
     'text!app/templates/Home.html',
     'text!app/templates/MyModel.html',
     'app/models/MyModelCollection',
-], function ($, _, Backbone, PageView, template, myModelTemplate, MyModelCollection) {
+], function ($, _, Backbone, __, PageView, template, myModelTemplate, MyModelCollection) {
     'use strict';
 
     return PageView.extend({
@@ -14,7 +15,7 @@ define([
         className: 'container',
 
         layoutOptions: {
-            title: 'Home',
+            title: __.t('Home'),
         },
 
         initialize: function () {
@@ -75,7 +76,9 @@ define([
                     console.log('Les données n\'ont pas pu être récupérées. Le serveur REST est lancé ?');
                 }
             });
-            that.$el.html(that.template());
+            that.$el.html(that.template({
+                __: __,
+            }));
             return that;
         },
 

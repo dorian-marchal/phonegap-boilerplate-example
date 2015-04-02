@@ -3,11 +3,12 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    '__',
     'app/singletons/auth',
     'app/singletons/router',
     'core/views/AppView',
     'text!app/templates/Header.html',
-], function (config, $, _, Backbone, auth, router, AppView, template) {
+], function (config, $, _, Backbone, __, auth, router, AppView, template) {
     'use strict';
 
     return AppView.extend({
@@ -25,6 +26,7 @@ define([
 
         render: function () {
             this.$el.html($(this.template({
+                __: __,
                 title: this.title,
                 loggedIn: auth.loggedIn,
                 showAuthButton: auth.loggedIn || Backbone.history.fragment !== 'login',

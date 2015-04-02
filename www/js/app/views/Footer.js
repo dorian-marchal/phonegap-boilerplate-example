@@ -2,9 +2,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    '__',
     'core/views/AppView',
     'text!app/templates/Footer.html',
-], function ($, _, Backbone, AppView, template) {
+], function ($, _, Backbone, __, AppView, template) {
     'use strict';
 
     return AppView.extend({
@@ -17,7 +18,9 @@ define([
         },
 
         render: function () {
-            this.$el.html($(this.template()));
+            this.$el.html($(this.template({
+                __: __,
+            })));
             return this;
         },
 

@@ -2,11 +2,12 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    '__',
     'app/singletons/auth',
     'app/singletons/router',
     'core/views/PageView',
     'text!app/templates/Login.html',
-], function ($, _, Backbone, auth, router, PageView, template) {
+], function ($, _, Backbone, __, auth, router, PageView, template) {
     'use strict';
 
     return PageView.extend({
@@ -14,7 +15,7 @@ define([
         className: 'container',
 
         layoutOptions: {
-            title: 'Login',
+            title: __.t('Login::Page')
         },
 
         initialize: function () {
@@ -48,7 +49,9 @@ define([
 
         render: function () {
             var that = this;
-            that.$el.html(that.template());
+            that.$el.html(that.template({
+                __: __,
+            }));
             return that;
         },
 
