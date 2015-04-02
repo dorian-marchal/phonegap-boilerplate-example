@@ -29,7 +29,7 @@ define([
             that.myModels.on('invalid', function(model, error) {
                 console.log(error);
             });
-            that.myModels.on('change', that.renderMyModels, that);
+            that.myModels.on('add', that.renderMyModels, that);
         },
 
         events: {
@@ -61,7 +61,7 @@ define([
             $myModelList.empty();
 
             that.myModels.each(function(myModel) {
-                $myModelList.append(that.myModelsTemplate(myModel.toJSON()));
+                $myModelList.append(that.myModelsTemplate(_.extend(myModel.toJSON(), {__: __})));
             });
         },
 
@@ -69,12 +69,13 @@ define([
             var that = this;
 
             that.myModels.fetch({
+                silent: true,
                 success: function(model, res, error) {
                     that.renderMyModels();
                 },
                 error: function(model, res, error) {
                     console.log('Les données n\'ont pas pu être récupérées. Le serveur REST est lancé ?');
-                }
+                },
             });
             that.$el.html(that.template({
                 __: __,
