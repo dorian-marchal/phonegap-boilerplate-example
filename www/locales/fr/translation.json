@@ -7,7 +7,9 @@
     "Button": "Se connecter",
     "Page": "Connexion"
   },
-  "Logout": "Se déconnecter",
+  "Logout": {
+    "Button": "Se déconnecter"
+  },
   "Models :": "Modèles",
   "Next Page": "Page suivante",
   "NextPage": "PageSuivante",
