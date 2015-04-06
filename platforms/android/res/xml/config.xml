@@ -4,6 +4,12 @@
     <feature name="Globalization">
         <param name="android-package" value="org.apache.cordova.globalization.Globalization" />
     </feature>
+    <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
+    <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
+    <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
+    <splash density="port-ldpi" src="resources/android/splash/drawable-ldpi-port-screen.png" />
+    <splash density="port-mdpi" src="resources/android/splash/drawable-mdpi-port-screen.png" />
+    <splash density="port-hdpi" src="resources/android/splash/drawable-hdpi-port-screen.png" />
     <name>PhonegapBoilerplate</name>
     <description>
         A simple example to show how to use https://github.com/dorian-marchal/phonegap-boilerplate
@@ -27,6 +33,7 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="10" />
     <preference name="android-installLocation" value="auto" />
-    <icon src="icon.png" />
+    <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
+    <splash density="port-xhdpi" src="resources/android/splash/drawable-xhdpi-port-screen.png" />
     <access origin="*" />
 </widget>
