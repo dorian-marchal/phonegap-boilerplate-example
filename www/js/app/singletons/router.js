@@ -9,6 +9,7 @@ define([
             '': 'home',
             'nextPage': 'nextPage',
             'login': 'login',
+            'map': 'map',
         },
 
         home: function () {
@@ -21,6 +22,10 @@ define([
 
         nextPage: function () {
             this.controller.nextPage();
+        },
+
+        map: function () {
+            this.controller.map();
         },
     });
 

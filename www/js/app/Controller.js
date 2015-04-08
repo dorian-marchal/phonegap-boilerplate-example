@@ -5,7 +5,8 @@ define([
     'app/views/Login',
     'app/views/Home',
     'app/views/NextPage',
-], function ($, AppController, LayoutView, LoginView, HomeView, NextPageView) {
+    'app/views/Map',
+], function ($, AppController, LayoutView, LoginView, HomeView, NextPageView, MapView) {
     'use strict';
 
     var Controller = function() {};
@@ -16,6 +17,7 @@ define([
     Controller.prototype.loginView = new LoginView();
     Controller.prototype.homeView = new HomeView();
     Controller.prototype.nextPageView = new NextPageView();
+    Controller.prototype.mapView = new MapView();
 
     Controller.prototype.home = function () {
         this.loadPage(this.layout, this.homeView);
@@ -27,6 +29,10 @@ define([
 
     Controller.prototype.nextPage = function () {
         this.loadPage(this.layout, this.nextPageView);
+    };
+
+    Controller.prototype.map = function () {
+        this.loadPage(this.layout, this.mapView);
     };
 
     return Controller;
