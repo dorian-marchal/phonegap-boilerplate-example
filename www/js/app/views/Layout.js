@@ -1,13 +1,11 @@
 define([
     'globals',
     'jquery',
-    'underscore',
-    'backbone',
     'core/views/AppLayout',
     'text!app/templates/Layout.html',
     'app/views/Header',
     'app/views/Footer',
-], function (globals, $, _, Backbone, AppLayout, template, HeaderView, FooterView) {
+], function (globals, $, AppLayout, template, HeaderView, FooterView) {
     'use strict';
 
     var header = new HeaderView();
