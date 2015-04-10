@@ -1,43 +1,29 @@
 define([
-    'config',
+    'conf',
     'jquery',
     'underscore',
     'backbone',
-    '__',
-    'core/views/AppView',
+    'core/views/AppLayout',
     'text!app/templates/Layout.html',
     'app/views/Header',
     'app/views/Footer',
-], function (config, $, _, Backbone, __, AppView, template, HeaderView, FooterView) {
+], function (config, $, _, Backbone, AppLayout, template, HeaderView, FooterView) {
     'use strict';
 
     var header = new HeaderView();
     var footer = new FooterView();
 
-    return AppView.extend({
+    return AppLayout.extend({
 
-        initialize: function () {
-            AppView.prototype.initialize.apply(this, arguments);
-            this.template = _.template(template);
-
-            this.options = {
-                title: config.appName,
-            };
+        defaultOptions: {
+            title: config.appName,
         },
 
-        setOptions: function(options) {
-            $.extend(this.options, options);
-        },
-
-        setContentView: function(contentView) {
-            this.contentView = contentView;
-        },
+        template: template,
 
         render: function() {
             $('title').html(this.options.title);
-            this.$el = $(this.template({
-                __: __,
-            }));
+            this.$el = $(this.tpl(this.options));
 
             header.title = this.options.title;
             this.assign(header, '.header');

@@ -1,5 +1,5 @@
 define([
-    'config',
+    'conf',
     'jquery',
     'underscore',
     'backbone',
@@ -8,12 +8,12 @@ define([
     'app/singletons/router',
     'core/views/AppView',
     'text!app/templates/Header.html',
-], function (config, $, _, Backbone, __, auth, router, AppView, template) {
+], function (conf, $, _, Backbone, __, auth, router, AppView, template) {
     'use strict';
 
     return AppView.extend({
 
-        title: config.appName,
+        title: conf.appName,
 
         events : {
             'click [data-action="logout"]' : 'logout',
