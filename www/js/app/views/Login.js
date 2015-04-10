@@ -1,13 +1,13 @@
 define([
+    'globals',
     'jquery',
     'underscore',
     'backbone',
     '__',
     'app/singletons/auth',
-    'app/singletons/router',
     'core/views/PageView',
     'text!app/templates/Login.html',
-], function ($, _, Backbone, __, auth, router, PageView, template) {
+], function (globals, $, _, Backbone, __, auth, PageView, template) {
     'use strict';
 
     return PageView.extend({
@@ -37,7 +37,7 @@ define([
                 $('[name="password"]').val(),
                 function(loginSuccess) {
                     if (loginSuccess) {
-                        router.navigate('/', true);
+                        globals.router.navigate('/', true);
                     }
                     else {
                         console.log('Wrong creds');

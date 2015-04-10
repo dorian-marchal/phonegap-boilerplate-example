@@ -1,5 +1,5 @@
 define([
-    'conf',
+    'globals',
     'jquery',
     'underscore',
     'backbone',
@@ -7,7 +7,7 @@ define([
     'text!app/templates/Layout.html',
     'app/views/Header',
     'app/views/Footer',
-], function (config, $, _, Backbone, AppLayout, template, HeaderView, FooterView) {
+], function (globals, $, _, Backbone, AppLayout, template, HeaderView, FooterView) {
     'use strict';
 
     var header = new HeaderView();
@@ -16,7 +16,7 @@ define([
     return AppLayout.extend({
 
         defaultOptions: {
-            title: config.appName,
+            title: globals.config.appName,
         },
 
         template: template,

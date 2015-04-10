@@ -1,19 +1,18 @@
 define([
-    'conf',
+    'globals',
     'jquery',
     'underscore',
     'backbone',
     '__',
     'app/singletons/auth',
-    'app/singletons/router',
     'core/views/AppView',
     'text!app/templates/Header.html',
-], function (conf, $, _, Backbone, __, auth, router, AppView, template) {
+], function (globals, $, _, Backbone, __, auth, AppView, template) {
     'use strict';
 
     return AppView.extend({
 
-        title: conf.appName,
+        title: globals.config.appName,
 
         events : {
             'click [data-action="logout"]' : 'logout',
@@ -36,7 +35,7 @@ define([
 
         logout: function() {
             auth.logout(function() {
-                router.navigate('/', true);
+                globals.router.navigate('/', true);
             });
         },
 

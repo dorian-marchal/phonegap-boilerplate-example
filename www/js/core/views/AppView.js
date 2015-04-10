@@ -4,11 +4,11 @@
  * The general code of the views goes here.
  */
  define([
+    'globals',
     'jquery',
     'underscore',
     'backbone',
-    'app/singletons/router',
-], function ($, _, Backbone, router) {
+], function (globals, $, _, Backbone) {
     'use strict';
 
     return Backbone.View.extend({
@@ -33,7 +33,7 @@
                     event.preventDefault();
                 },
                 'click [data-route]' : function(event) {
-                    router.navigate($(event.currentTarget).attr('data-route'), true);
+                    globals.router.navigate($(event.currentTarget).attr('data-route'), true);
                     event.preventDefault();
                 }
             });

@@ -3,9 +3,9 @@
  * Use : https://github.com/ccoenraets/directory-backbone-topcoat-require
  */
 define([
+    'globals',
     'jquery',
-    'app/singletons/router',
-], function ($, router) {
+], function (globals, $) {
 
     'use strict';
 
@@ -15,7 +15,7 @@ define([
             stateHistory = [];
 
         this.back = function () {
-            router.navigate(stateHistory[stateHistory.length - 2], true);
+            globals.router.navigate(stateHistory[stateHistory.length - 2], true);
         };
 
         // Use this function if you want PageSlider to automatically determine the sliding direction based on the state history

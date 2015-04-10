@@ -1,7 +1,10 @@
 define([
     'core/AppRouter',
-], function (AppRouter) {
+    'app/controllers/Controller',
+], function (AppRouter, Controller) {
     'use strict';
+
+    var controller = new Controller();
 
     var Router = AppRouter.extend({
 
@@ -13,22 +16,22 @@ define([
         },
 
         home: function () {
-            this.controller.home();
+            controller.home();
         },
 
         login: function () {
-            this.controller.login();
+            controller.login();
         },
 
         nextPage: function () {
-            this.controller.nextPage();
+            controller.nextPage();
         },
 
         map: function () {
-            this.controller.map();
+            controller.map();
         },
     });
 
-    return new Router();
+    return Router;
 
 });
