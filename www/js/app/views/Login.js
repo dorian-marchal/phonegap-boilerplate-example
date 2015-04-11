@@ -22,7 +22,7 @@ define([
             PageView.prototype.initialize.apply(this, arguments);
             var that = this;
 
-            that.template = _.template(template);
+            that.tpl = _.template(template);
         },
 
         events: {
@@ -49,7 +49,7 @@ define([
 
         render: function () {
             var that = this;
-            that.$el.html(that.template({
+            that.$el.html(that.tpl({
                 __: __,
             }));
             return that;

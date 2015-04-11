@@ -14,11 +14,11 @@ define([
 
         initialize: function () {
             AppView.prototype.initialize.apply(this, arguments);
-            this.template = _.template(template);
+            this.tpl = _.template(template);
         },
 
         render: function () {
-            this.$el.html($(this.template({
+            this.$el.html($(this.tpl({
                 __: __,
             })));
             return this;
