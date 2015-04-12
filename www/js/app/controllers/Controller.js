@@ -9,31 +9,32 @@ define([
 ], function ($, AppController, LayoutView, LoginView, HomeView, NextPageView, MapView) {
     'use strict';
 
-    var Controller = function() {};
+    var Controller = AppController.extend({
 
-    Controller.prototype = new AppController();
+        route: 'ctrl',
 
-    Controller.prototype.layout = new LayoutView();
-    Controller.prototype.loginView = new LoginView();
-    Controller.prototype.homeView = new HomeView();
-    Controller.prototype.nextPageView = new NextPageView();
-    Controller.prototype.mapView = new MapView();
+        layout: new LayoutView(),
+        loginView: new LoginView(),
+        homeView: new HomeView(),
+        nextPageView: new NextPageView(),
+        mapView: new MapView(),
 
-    Controller.prototype.home = function () {
-        this.loadPage(this.layout, this.homeView);
-    };
+        home: function () {
+            this.loadPage(this.layout, this.homeView);
+        },
 
-    Controller.prototype.login = function () {
-        this.loadPage(this.layout, this.loginView);
-    };
+        login: function () {
+            this.loadPage(this.layout, this.loginView);
+        },
 
-    Controller.prototype.nextPage = function () {
-        this.loadPage(this.layout, this.nextPageView);
-    };
+        nextPage: function () {
+            this.loadPage(this.layout, this.nextPageView);
+        },
 
-    Controller.prototype.map = function () {
-        this.loadPage(this.layout, this.mapView);
-    };
+        map: function () {
+            this.loadPage(this.layout, this.mapView);
+        },
+    });
 
     return Controller;
 
