@@ -8,7 +8,20 @@ define([
 
         uses: [
             Controller,
-        ]
+        ],
+
+        additionalRoutes: {
+            '' : 'home',
+            ':action(/*params)' : 'simpleAction',
+        },
+
+        home: function() {
+            this.callAction('ctrl', 'home');
+        },
+
+        simpleAction: function(action, stringParams) {
+            this.routeAction('ctrl', action, stringParams);
+        },
     });
 
     return Router;
