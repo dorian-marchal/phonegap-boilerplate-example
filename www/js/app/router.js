@@ -10,7 +10,7 @@ define([
             Controller,
         ],
 
-        additionalRoutes: {
+        customRoutes: {
             '' : 'home',
             ':action(/*params)' : 'simpleAction',
         },
