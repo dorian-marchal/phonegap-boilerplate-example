@@ -12,6 +12,8 @@ define([
 
     return PageView.extend({
 
+        name: 'login',
+
         className: 'container',
 
         layoutOptions: {

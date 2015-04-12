@@ -13,6 +13,8 @@ define([
 
     return AppLayout.extend({
 
+        name: 'layout',
+
         defaultOptions: {
             title: globals.config.appName,
         },

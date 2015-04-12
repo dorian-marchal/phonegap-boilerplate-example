@@ -1,41 +1,28 @@
-define([
-    'jquery',
-    'core/AppController',
-    'app/views/Layout',
-    'app/views/Login',
-    'app/views/Home',
-    'app/views/NextPage',
-    'app/views/Map',
-], function ($, AppController, LayoutView, LoginView, HomeView, NextPageView, MapView) {
+define(function(require) {
     'use strict';
 
-    var Controller = AppController.extend({
+    var AppController = require('core/AppController');
 
-        route: 'ctrl',
+    return AppController.extend({
 
-        layout: new LayoutView(),
-        loginView: new LoginView(),
-        homeView: new HomeView(),
-        nextPageView: new NextPageView(),
-        mapView: new MapView(),
+        name: 'ctrl',
 
-        home: function () {
-            this.loadPage(this.layout, this.homeView);
-        },
+        useLayouts: [
+            require('app/views/Layout'),
+        ],
 
-        login: function () {
-            this.loadPage(this.layout, this.loginView);
-        },
+        usePages: [
+            require('app/views/Login'),
+            require('app/views/Home'),
+            require('app/views/NextPage'),
+            require('app/views/Map'),
+        ],
 
-        nextPage: function () {
-            this.loadPage(this.layout, this.nextPageView);
-        },
-
-        map: function () {
-            this.loadPage(this.layout, this.mapView);
+        layoutForPages: {
+            login: 'layout',
+            home: 'layout',
+            nextPage: 'layout',
+            map: 'layout',
         },
     });
-
-    return Controller;
-
 });

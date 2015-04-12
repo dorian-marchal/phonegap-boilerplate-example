@@ -10,6 +10,8 @@ define([
 
     return PageView.extend({
 
+        name: 'map',
+
         className: 'container',
 
         layoutOptions: {

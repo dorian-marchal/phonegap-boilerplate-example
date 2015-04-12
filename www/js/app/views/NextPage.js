@@ -10,6 +10,8 @@ define([
 
     return PageView.extend({
 
+        name: 'nextPage',
+
         className: 'container',
 
         layoutOptions: {
