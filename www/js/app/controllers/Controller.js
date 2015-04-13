@@ -18,11 +18,23 @@ define(function(require) {
             require('app/views/Map'),
         ],
 
-        layoutForPages: {
-            login: 'layout',
-            home: 'layout',
-            nextPage: 'layout',
-            map: 'layout',
+        pageForActions: {
+            login: {
+                page: 'login',
+                layout: 'layout',
+            },
+            home: {
+                page: 'home',
+                layout: 'layout',
+            },
+            nextPage: {
+                page: 'nextPage',
+                layout: 'layout',
+            },
+            map: {
+                page: 'map',
+                layout: 'layout',
+            },
         },
     });
 });

@@ -28,7 +28,7 @@ define([
             header.title = this.options.title;
             this.assign(header, '.header');
 
-            this.$el.find('.content').html(this.contentView.render().$el);
+            this.$el.find('.content').html(this.pageView.render().$el);
 
             this.assign(footer, '.footer');
             return this;

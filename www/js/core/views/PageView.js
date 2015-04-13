@@ -9,6 +9,12 @@ define([
          * Options passed to the layout
          */
         layoutOptions: {},
+
+        /**
+         * Called on page transition end (overridable)
+         */
+        transitionEnd: function() {},
+
     });
 
 });
