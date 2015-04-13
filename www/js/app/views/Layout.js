@@ -1,37 +1,22 @@
-define([
-    'globals',
-    'jquery',
-    'core/views/AppLayout',
-    'text!app/templates/Layout.html',
-    'app/views/Header',
-    'app/views/Footer',
-], function (globals, $, AppLayout, template, HeaderView, FooterView) {
+define(function (require) {
     'use strict';
 
-    var header = new HeaderView();
-    var footer = new FooterView();
+    var globals = require('globals');
+    var AppLayout = require('core/views/AppLayout');
 
     return AppLayout.extend({
 
         name: 'layout',
 
-        defaultOptions: {
-            title: globals.config.appName,
+        template: require('text!app/templates/Layout.html'),
+
+        subviews: {
+            '.header' : require('app/views/Header'),
+            '.footer' : require('app/views/Footer'),
         },
 
-        template: template,
-
-        render: function() {
-            $('title').html(this.options.title);
-            this.$el = $(this.tpl(this.options));
-
-            header.title = this.options.title;
-            this.assign(header, '.header');
-
-            this.$el.find('.content').html(this.pageView.render().$el);
-
-            this.assign(footer, '.footer');
-            return this;
+        defaultOptions: {
+            title: globals.config.appName,
         },
 
     });

@@ -12,8 +12,6 @@ define([
 
     return AppView.extend({
 
-        title: globals.config.appName,
-
         events : {
             'click [data-action="logout"]' : 'logout',
         },
@@ -26,7 +24,7 @@ define([
         render: function () {
             this.$el.html($(this.tpl({
                 __: __,
-                title: this.title,
+                title: this.options.title,
                 loggedIn: auth.loggedIn,
                 showAuthButton: auth.loggedIn || Backbone.history.fragment !== 'login',
             })));
