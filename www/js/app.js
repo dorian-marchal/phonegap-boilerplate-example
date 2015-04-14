@@ -24,7 +24,9 @@ require([
         }, false);
 
         // The fake cordova.js (www/cordova.js) listen to this event to shim deviceready event
-        document.dispatchEvent(new Event('ready-to-shim'));
+        var readyToShimEvent = document.createEvent('Event');
+        readyToShimEvent.initEvent('ready-to-shim', true, true);
+        document.dispatchEvent(readyToShimEvent);
 
         // Load the app
         var start = function() {
@@ -38,8 +40,9 @@ require([
                 'fastclick',
                 'core/utils/PageSlider',
                 'app/router',
-                'app/singletons/auth'
-            ], function (globals, domReady, async, $, Backbone, FastClick, PageSlider, Router, auth) {
+                'app/singletons/auth',
+                'app/initHook',
+            ], function (globals, domReady, async, $, Backbone, FastClick, PageSlider, Router, auth, initHook) {
 
                 // Use application/x-www-form-urlencoded
                 Backbone.emulateJSON = true;
@@ -62,6 +65,13 @@ require([
                     setTimeout(function() {
                         done();
                     }, config.splashScreenMinimumDurationMs);
+                };
+
+                // Execute some code before starting the app (during the splashscreen)
+                toWait.init = function(done) {
+                    initHook(function() {
+                        done();
+                    });
                 };
 
                 // Check if authentificated
