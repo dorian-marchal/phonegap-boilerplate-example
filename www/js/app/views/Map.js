@@ -3,12 +3,12 @@ define([
     'underscore',
     'backbone',
     '__',
-    'core/views/PageView',
+    'core/views/AppPage',
     'text!app/templates/Map.html',
-],function ($, _, Backbone, __, PageView, template) {
+],function ($, _, Backbone, __, AppPage, template) {
     'use strict';
 
-    return PageView.extend({
+    return AppPage.extend({
 
         name: 'map',
 
@@ -19,7 +19,7 @@ define([
         },
 
         initialize: function () {
-            PageView.prototype.initialize.apply(this, arguments);
+            AppPage.prototype.initialize.apply(this, arguments);
             this.tpl = _.template(template);
         },
 

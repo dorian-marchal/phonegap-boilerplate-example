@@ -5,12 +5,12 @@ define([
     'backbone',
     '__',
     'app/singletons/auth',
-    'core/views/PageView',
+    'core/views/AppPage',
     'text!app/templates/Login.html',
-], function (globals, $, _, Backbone, __, auth, PageView, template) {
+], function (globals, $, _, Backbone, __, auth, AppPage, template) {
     'use strict';
 
-    return PageView.extend({
+    return AppPage.extend({
 
         name: 'login',
 
@@ -21,7 +21,7 @@ define([
         },
 
         initialize: function () {
-            PageView.prototype.initialize.apply(this, arguments);
+            AppPage.prototype.initialize.apply(this, arguments);
             var that = this;
 
             that.tpl = _.template(template);
