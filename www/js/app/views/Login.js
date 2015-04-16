@@ -1,16 +1,18 @@
 define([
+    'globals',
     'jquery',
     'underscore',
     'backbone',
     '__',
     'app/singletons/auth',
-    'app/singletons/router',
-    'core/views/PageView',
+    'core/views/AppPage',
     'text!app/templates/Login.html',
-], function ($, _, Backbone, __, auth, router, PageView, template) {
+], function (globals, $, _, Backbone, __, auth, AppPage, template) {
     'use strict';
 
-    return PageView.extend({
+    return AppPage.extend({
+
+        name: 'login',
 
         className: 'container',
 
@@ -19,10 +21,10 @@ define([
         },
 
         initialize: function () {
-            PageView.prototype.initialize.apply(this, arguments);
+            AppPage.prototype.initialize.apply(this, arguments);
             var that = this;
 
-            that.template = _.template(template);
+            that.tpl = _.template(template);
         },
 
         events: {
@@ -37,7 +39,7 @@ define([
                 $('[name="password"]').val(),
                 function(loginSuccess) {
                     if (loginSuccess) {
-                        router.navigate('/', true);
+                        globals.router.navigate('/', true);
                     }
                     else {
                         console.log('Wrong creds');
@@ -49,7 +51,7 @@ define([
 
         render: function () {
             var that = this;
-            that.$el.html(that.template({
+            that.$el.html(that.tpl({
                 __: __,
             }));
             return that;

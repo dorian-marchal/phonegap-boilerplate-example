@@ -3,12 +3,14 @@ define([
     'underscore',
     'backbone',
     '__',
-    'core/views/PageView',
+    'core/views/AppPage',
     'text!app/templates/NextPage.html',
-],function ($, _, Backbone, __, PageView, template) {
+],function ($, _, Backbone, __, AppPage, template) {
     'use strict';
 
-    return PageView.extend({
+    return AppPage.extend({
+
+        name: 'nextPage',
 
         className: 'container',
 
@@ -17,12 +19,12 @@ define([
         },
 
         initialize: function () {
-            PageView.prototype.initialize.apply(this, arguments);
-            this.template = _.template(template);
+            AppPage.prototype.initialize.apply(this, arguments);
+            this.tpl = _.template(template);
         },
 
         render: function () {
-            this.$el.html(this.template({
+            this.$el.html(this.tpl({
                 __: __,
             }));
             return this;
