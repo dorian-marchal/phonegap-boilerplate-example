@@ -11,8 +11,14 @@ define([
 
     return function PageSlider(container) {
 
+        var animationsEnabled = true;
+
         var $currentPage,
             stateHistory = [];
+
+        this.setAnimationsEnabled = function(enableAnimation) {
+            animationsEnabled = enableAnimation;
+        };
 
         this.back = function () {
             globals.router.navigate(stateHistory[stateHistory.length - 2], true);
@@ -33,10 +39,10 @@ define([
             }
             if (state === stateHistory[l - 2]) {
                 stateHistory.pop();
-                this.slidePageFrom($newPage, 'page-left', onTransitionEndCallback);
+                this.slidePageFrom($newPage, 'left', onTransitionEndCallback);
             } else {
                 stateHistory.push(state);
-                this.slidePageFrom($newPage, 'page-right', onTransitionEndCallback);
+                this.slidePageFrom($newPage, 'right', onTransitionEndCallback);
             }
 
         };
@@ -58,15 +64,18 @@ define([
             // Current page must be removed after the transition
             var $oldPage = $currentPage;
             var firstSlide = !$oldPage;
+            var to = (from === 'left' ? 'right' : 'left');
 
-            container.append($newPage);
-
-            $newPage.addClass('page');
+            container.append($newPage.addClass('page'));
 
             // First loaded page (no old page) or no transition
-            if (firstSlide || !from) {
+            if (firstSlide || !from || !animationsEnabled) {
+                // Remove old page if it exists
+                if ($oldPage) {
+                    $oldPage.remove();
+                }
 
-                $newPage.addClass('page-center no-transition');
+                $newPage.addClass('page-center');
 
                 $currentPage = $newPage;
 
@@ -76,7 +85,7 @@ define([
             }
 
             // Position the page at the starting position of the animation
-            $newPage.addClass(from);
+            $newPage.addClass('page-' + from);
 
             // Shim transitionend if it's not fired
             var shimTransitionEnd = setTimeout(function() {
@@ -93,12 +102,12 @@ define([
 
             // Position the new page and the current page at the ending position of their animation with a transition class indicating the duration of the animation
             $newPage
-                .removeClass('page-left page-right no-transition')
-                .addClass('transition page-center');
+                .removeClass('page-left page-right')
+                .addClass('page-center from-' + from);
 
             $oldPage
-                .removeClass('page-center no-transition')
-                .addClass('transition ' + (from === 'page-left' ? 'page-right' : 'page-left'));
+                .removeClass('page-center')
+                .addClass('page-' + to + ' to-' + to);
 
             $currentPage = $newPage;
 

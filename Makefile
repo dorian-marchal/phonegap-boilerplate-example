@@ -43,6 +43,8 @@ build:
 	cp bower_components/i18next/i18next.js www/js/lib/
 	cp bower_components/gmaps.js/gmaps.js www/js/lib/
 	cp bower_components/requirejs-plugins/src/async.js www/js/lib/gm_async.js
+
+	# More dependencies
 	mkdir -p www/css/lib/topcoat
 	mkdir -p www/css/lib/topcoat/css
 	cp bower_components/topcoat/css/topcoat-mobile-light.min.css www/css/lib/topcoat/css
