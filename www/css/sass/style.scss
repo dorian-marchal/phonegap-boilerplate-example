@@ -1,0 +1,52 @@
+@import 'base';
+@import 'smart-grid';
+@import '../lib/page-slider';
+@import '../lib/topcoat/topcoat';
+
+.topcoat-text-input {
+    width: 100%;
+}
+
+/* Forms */
+.form-actions input {
+    float: right;
+    margin-top: 20px;
+}
+
+/* /Forms */
+
+header,
+footer {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.4);
+}
+
+footer {
+    bottom: 0px;
+}
+
+header {
+    top: 0px;
+}
+
+.content {
+    margin: 70px 0px;
+    margin-top: 120px;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.mymodel-list {
+    margin-top: 60px;
+}
+
+.topcoat-navigation-bar .topcoat-button {
+    margin-top: 9px;
+}
+
+.topcoat-navigation-bar .left-button {
+    position: absolute;
+    left: 0px;
+}

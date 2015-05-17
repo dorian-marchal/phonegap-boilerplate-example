@@ -5,11 +5,8 @@
 define([
     'globals',
     'jquery',
-    'core/utils/PageSlider',
-], function (globals, $, PageSlider) {
+], function (globals, $) {
     'use strict';
-
-    var slider = new PageSlider($('body'));
 
     var AppController = function() {
         this._init();
@@ -42,46 +39,94 @@ define([
 
             // Associate pages with layouts
             var loadPageMaker = function(layout, page) {
-                return function() {
-                    // We pass the action arguments to page.beforeRender
-                    page.beforeRender.apply(page, arguments);
-                    that._loadPage(layout, page);
+
+                return function () {
+
+                    var actionArguments = Array.prototype.slice.call(arguments);
+
+                    that._loadPage(layout, page, actionArguments);
                 };
             };
 
+            // Convert this.pageForActions to controller actions
             for (var actionName in this.pageForActions) {
                 var pageName = this.pageForActions[actionName].page;
                 var layoutName = this.pageForActions[actionName].layout;
-                this[pageName] = loadPageMaker(that.layouts[layoutName], this.pages[pageName]);
+
+                if (!this.pages[pageName]) {
+                    console.error('Unknown page in Controller: ' + pageName);
+                }
+                else if (!this.layouts[layoutName]) {
+                    console.error('Unknown layout in Controller: ' + layoutName);
+                }
+                else {
+                    this[pageName] = loadPageMaker(this.layouts[layoutName], this.pages[pageName]);
+                }
             }
         },
 
         /**
          * Load a Page in the given layout.
+         * @param {AppLayout} layout         The layout of the page
+         * @param {AppPage} page           The page to load
+         * @param {Array} actionArguments The arguments passed to the controller
+         *    action. (controller, action, params)
          */
-        _loadPage: function (layout, page) {
+        _loadPage: function (layout, page, actionArguments) {
+
+            var slider = globals.router.slider;
+
+            var slideOrigin = slider.getNextSlideOrigin();
+
+            var history = 'first';
+            if (slideOrigin) {
+                history = slideOrigin === 'right' ? 'forward' : 'back';
+            }
+
+            // We call page.beforeLoad before loading the page
+            page.beforeLoad.call(page, {
+                actionArguments: actionArguments || [],
+                history: history,
+            });
+
             layout.setPage(page);
-            slider.slidePage(layout.render().$el, function(wasFirstSlide) {
+            layout.render();
+            layout.$el.addClass(page.name);
 
-                // Lets the UI thread breathe a little before calling transitionEnd
-                setTimeout(function() {
-                    page.transitionEnd();
-                }, 0);
+            slider.slidePage(layout.$el, {
 
-                // If we just rendered the first page, we hide the splashscreen
-                if (wasFirstSlide) {
+                beforeTransition: function() {
+                    page.afterRender();
 
+                    // Switch the fixed element to absolute positionning
+                    // To prevent odd behaviour during transition
+                    $('[data-fixed]').attr('data-fixed', 'absolute');
+                },
+                afterTransition: function(wasFirstSlide) {
+
+                    // Switch back the fixed elements (only for the new page)
+                    layout.$('[data-fixed]').attr('data-fixed', 'fixed');
+
+                    // Lets the UI thread breathe a little before calling afterLoad
                     setTimeout(function() {
+                        page.afterLoad();
+                    }, 0);
 
-                        // Force reflow before hiding the splashscreen.
-                        /*jshint -W030*/
-                        layout.el.offsetHeight;
+                    // If we just rendered the first page, we hide the splashscreen
+                    if (wasFirstSlide) {
 
-                        // Hide the splashscreen
-                        navigator.splashscreen.hide();
+                        setTimeout(function() {
 
-                    }, globals.config.splashScreenMinimumDurationMs);
-                }
+                            // Force reflow before hiding the splashscreen.
+                            /*jshint -W030*/
+                            layout.el.offsetHeight;
+
+                            // Hide the splashscreen
+                            navigator.splashscreen.hide();
+
+                        }, 500); // 500ms safety to prevent splashscreen flickering
+                    }
+                },
             });
             layout.delegateEvents();
             page.delegateEvents();
