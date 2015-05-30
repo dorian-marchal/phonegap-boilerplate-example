@@ -6,12 +6,14 @@
  define({
 
      // Your app Name
-     appName: 'Phonegap Boilerplate',
+     appName: 'Phonegap Boilerplate Example',
 
      splashScreenMinimumDurationMs: 0,
 
      // True if token authentification is used
-     useAuth: false,
+     useAuth: true,
+
+     databaseEngine: 'mysql', // 'mysql' or 'mongodb' (This option is specific at this example)
 
      // RequireJS config
      paths: {
