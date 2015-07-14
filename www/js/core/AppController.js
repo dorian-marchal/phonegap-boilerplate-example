@@ -1,11 +1,45 @@
 /**
- * The object from wich the app controller must inherit.
- * The controller is controlled by the router and manage the different views.
+ * The object from which all the app controllers must inherit.
+ *
+ * The controller actions are called by the router.
+ *
+ * It is responsible for linking the different views with their layout.
+ *
+ * Example :
+ *
+ * ```js
+ * define(function(require) {
+ *     'use strict';
+ *
+ *     var AppController = require('core/AppController');
+ *
+ *     return AppController.extend({
+ *         name: 'my-controller',
+ *
+ *         useLayouts: [
+ *             require('app/views/SimpleLayout'),
+ *         ],
+ *
+ *         usePages: [
+ *             require('app/views/MyPage'),
+ *         ],
+ *
+ *         pageForActions: {
+ *             'my-page': { // The name property of the page
+ *                 page: 'my-page',
+ *                 layout: 'simpleLayout', // The name property of the layout
+ *             },
+ *         },
+ *     });
+ * });
+ * ```
+ * @class AppController
  */
 define([
     'globals',
+    'backbone',
     'jquery',
-], function (globals, $) {
+], function (globals, Backbone, $) {
     'use strict';
 
     var AppController = function() {
@@ -14,8 +48,22 @@ define([
 
     AppController.prototype = {
 
+        /**
+         * @member {Array} useLayouts Required layouts
+         * <br>
+         */
         useLayouts: [],
+
+        /**
+         * @member {Array} usePages Required pages
+         * <br>
+         */
         usePages: [],
+
+        /**
+         * @member {Object} layoutForPages Link between routes, pages and layouts.
+         * <br>
+         */
         layoutForPages: {},
 
         _init: function() {
@@ -74,8 +122,8 @@ define([
          */
         _loadPage: function (layout, page, actionArguments) {
 
+            var oldPage = globals.currentPage;
             var slider = globals.router.slider;
-
             var slideOrigin = slider.getNextSlideOrigin();
 
             var history = 'first';
@@ -83,7 +131,12 @@ define([
                 history = slideOrigin === 'right' ? 'forward' : 'back';
             }
 
-            // We call page.beforeLoad before loading the page
+            // We call oldPage.beforeLeave before leaving the page...
+            if (oldPage) {
+                oldPage.beforeLeave();
+            }
+
+            // ...and page.beforeLoad before loading the page
             page.beforeLoad.call(page, {
                 actionArguments: actionArguments || [],
                 history: history,
@@ -97,10 +150,6 @@ define([
 
                 beforeTransition: function() {
                     page.afterRender();
-
-                    if (globals.currentPage) {
-                        globals.currentPage.beforeLeave();
-                    }
 
                     // Switch the fixed element to absolute positionning
                     // To prevent odd behaviour during transition
@@ -135,7 +184,6 @@ define([
                 },
             });
             layout.delegateEvents();
-            page.delegateEvents();
         },
 
     };
