@@ -78,12 +78,18 @@ build-optimize:
 .PHONY: build-phonegap
 build-phonegap:
 	# ios build...
-	-@(phonegap build ios && echo "iOS build successful!") || (echo "/!\ Unable to build iOS platform, are you on OSX ?")
+	# -@(phonegap build ios && echo "iOS build successful!") || (echo "/!\ Unable to build iOS platform, are you on OSX ?")
 	# android build...
 	-@(phonegap build android && echo "Android build successful!") || (echo "/!\ Unable to build Android platform, is Android SDK available ?")
 
+# Prepare the repo
+.PHONY: install
+install:
+	npm install
+	@echo "Don't forget to create the config file :"
+	@echo "- cp www/js/config.js.default www/js/config.js"
+
 # Prepare the repo to start developing
 .PHONY: install-dev
-install-dev:
-	npm install
+install-dev: install
 	./dev-scripts/install-dev

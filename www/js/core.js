@@ -10,7 +10,7 @@
 
      splashScreenMinimumDurationMs: 0,
 
-     // True if token authentification is used
+     // True if token authentication is used
      useAuth: true,
 
      databaseEngine: 'mysql', // 'mysql' or 'mongodb' (This option is specific at this example)
